@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[Use TensorFlow.js and Pixi.js to build a 2D game with gesture/photo recognition control, Part 1]]></title>
+    <title><![CDATA[Build a 2D game with photo/gesture recognition by Tensor Flow JS and Pixi JS, Part 1]]></title>
     <url>%2F2019%2F09%2F29%2FBuild-a-2D-game-with-photo-gesture-recognition-by-Tensor-Flow-JS-and-Pixi-JS%2F</url>
     <content type="text"><![CDATA[TensorFlow.js is an open-source library we can use to train and run machine learning models in the browser by using Javascript and API. In this and next two upcoming blogs, I’ll demonstrate how to use TF.js and Pixi.js(a javascript library can build game can run in the web browser) to build a 2D game and control the character by gesture/photo recognition through the camera. In this blog, we’ll try out TF.js and Pixi.js by using their official demos. Tensorflow.js DemoGoogle prepared this demo page with several TF.js application. Let’s try the Pac-Man webcam controller application since we’ll build a gesture/photo recognition application later. Pixi.js DemoPixi.js also has a demo page to demonstrate all the functionalities of this library. Feel free to try them, or you can learn the basic of Pixi.js in here. In the next blog, I’ll show you how to build a basic Pixi application with simple interaction.]]></content>
   </entry>
