@@ -98,25 +98,25 @@
 
 
 
-  <meta name="description" content="Recently I started using Oracle database 12c enterprise edition. Instead of using a virtual machine I choose to use Docker to install the Oracle database in MacOs Mojave. I’m going to introduce how to">
+  <meta name="description" content="https://seamaszhou.com/">
 <meta name="keywords" content="Hexo,HTML,CSS,android,Linux,Oracle,Python">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Oracle 12c enterprise edition Installation on Mac Mojave with Docker">
-<meta property="og:url" content="/2019/03/12/Docker/index.html">
+<meta property="og:title" content="Use TensorFlow.js and Pixi.js to build a 2D game with guesture&#x2F;photo recognition control">
+<meta property="og:url" content="/2019/09/29/Build-a-2D-game-with-photo-gesture-recognition-by-Tensor-Flow-JS-and-Pixi-JS/index.html">
 <meta property="og:site_name" content="Seamas Zhou">
-<meta property="og:description" content="Recently I started using Oracle database 12c enterprise edition. Instead of using a virtual machine I choose to use Docker to install the Oracle database in MacOs Mojave. I’m going to introduce how to">
+<meta property="og:description" content="https://seamaszhou.com/">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-03-16T10:15:33.061Z">
+<meta property="og:updated_time" content="2019-09-29T08:11:40.247Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Oracle 12c enterprise edition Installation on Mac Mojave with Docker">
-<meta name="twitter:description" content="Recently I started using Oracle database 12c enterprise edition. Instead of using a virtual machine I choose to use Docker to install the Oracle database in MacOs Mojave. I’m going to introduce how to">
+<meta name="twitter:title" content="Use TensorFlow.js and Pixi.js to build a 2D game with guesture&#x2F;photo recognition control">
+<meta name="twitter:description" content="https://seamaszhou.com/">
 
 
 
 
 
 
-  <link rel="canonical" href="/2019/03/12/Docker/">
+  <link rel="canonical" href="/2019/09/29/Build-a-2D-game-with-photo-gesture-recognition-by-Tensor-Flow-JS-and-Pixi-JS/">
 
 
 
@@ -126,7 +126,7 @@
   };
 </script>
 
-  <title>Oracle 12c enterprise edition Installation on Mac Mojave with Docker | Seamas Zhou</title>
+  <title>Use TensorFlow.js and Pixi.js to build a 2D game with guesture/photo recognition control | Seamas Zhou</title>
   
 
 
@@ -331,7 +331,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="/2019/03/12/Docker/">
+    <link itemprop="mainEntityOfPage" href="/2019/09/29/Build-a-2D-game-with-photo-gesture-recognition-by-Tensor-Flow-JS-and-Pixi-JS/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Seamas Zhou">
@@ -348,7 +348,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Oracle 12c enterprise edition Installation on Mac Mojave with Docker
+          <h1 class="post-title" itemprop="name headline">Use TensorFlow.js and Pixi.js to build a 2D game with guesture/photo recognition control
 
               
             
@@ -374,24 +374,12 @@
                 
               
 
-              <time title="Created: 2019-03-12 20:38:53" itemprop="dateCreated datePublished" datetime="2019-03-12T20:38:53+10:00">2019-03-12</time>
+              <time title="Created: 2019-09-29 18:08:07 / Modified: 18:11:40" itemprop="dateCreated datePublished" datetime="2019-09-29T18:08:07+10:00">2019-09-29</time>
             
 
             
               
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-03-16 20:15:33" itemprop="dateModified" datetime="2019-03-16T20:15:33+10:00">2019-03-16</time>
               
             
           </span>
@@ -425,53 +413,7 @@
       
 
       
-        <p>Recently I started using Oracle database 12c enterprise edition. Instead of using a virtual machine I choose to use Docker to install the Oracle database in MacOs Mojave. I’m going to introduce how to do that in a few simple steps below.</p>
-<h3 id="1-Install-docker"><a href="#1-Install-docker" class="headerlink" title="1. Install docker"></a>1. Install docker</h3><p>Docker is a tool we can create, deploy and run applications by using <strong>containers</strong>. Docker <strong>containers</strong> is launched by running an <strong>image</strong>, which is an executable package contains everything you need to run an application. For example, the Oracle database we are going to install in the docker later is an <strong>image</strong> provided by Oracle company.</p>
-<p>Install docker is very easy; all you need to do <a href="https://hub.docker.com/signup" target="_blank" rel="noopener">register a docker account</a> and download <a href="https://hub.docker.com/editions/community/docker-ce-desktop-mac" target="_blank" rel="noopener">Docker for Mac</a>. After installed docker in your Mac, use the account you registered earlier to sign in.</p>
-<h3 id="2-Install-Oracle-database-in-docker"><a href="#2-Install-Oracle-database-in-docker" class="headerlink" title="2. Install Oracle database in docker"></a>2. Install Oracle database in docker</h3><p>The Oracle database 12C(12.2.0.1) enterprise edition is available in Docker hub, and you can get the image running on Oracle Linux 7 in the <a href="https://hub.docker.com/_/oracle-database-enterprise-edition" target="_blank" rel="noopener">here</a>. </p>
-<p>After you got the image from docker hub, run the code below in <strong>terminal</strong> to pull/download the image into your local machine.</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull store/oracle/database-enterprise:12.2.0.1</span><br></pre></td></tr></table></figure>
-<p>It might ask your credentials for the first time, input your docker username and password.</p>
-<p>Then use <code>docker image ls</code> to list the image you pulled, the output should looks like below:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">RREPOSITORY                            TAG       IMAGE ID      CREATED        SIZE           </span><br><span class="line">store/oracle/database-enterprise       12.2.0.1  12a359cd0528  19 months ago  3.44GB</span><br></pre></td></tr></table></figure>
-<p>Now excuting the code below to start an Oracle database server instance:</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d -p 8080:8080 -p 1521:1521 --name OracleDB store/oracle/database-enterprise:12.2.0.1</span><br></pre></td></tr></table></figure>
-<p>(You can replace ‘OracleDB’ to the name you want for the database.)</p>
-<p>Wait one minute then run <code>docker ps</code> in your terminal; you should see the container is running and status column shows ‘healthy’ like below. Otherwise, wait for few minutes then run <code>docker ps</code> again.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">CONTAINER ID        IMAGE                                         CREATED             STATUS           </span><br><span class="line">2065c157d818        store/oracle/database-enterprise:12.2.0.1     3 days ago          Up 2 days (healthy)</span><br></pre></td></tr></table></figure>
-<p>The Oracle database is successfully running in your Mac now, now let us create a sample table and a database administrator account for it. Execute the query below to connect the database first.</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker exec -it OracleDB bash -c "source /home/oracle/.bashrc; sqlplus /nolog"</span><br></pre></td></tr></table></figure>
-<p>The output from your terminal should looks likes below:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SQL*Plus: Release 12.2.0.1.0 Production on Wed Mar 13 01:55:16 2019 Copyright (c) 1982, 2016, Oracle.  All rights reserved.</span><br></pre></td></tr></table></figure>
-<p>Now execute the query below to create a new database administrator account and a sample table.</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">conn sys as sysdba;</span><br><span class="line"><span class="comment">-- Now enter the password as 'Oradoc_db1'</span></span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">session</span> <span class="keyword">set</span> <span class="string">"_ORACLE_SCRIPT"</span>=<span class="literal">true</span>;</span><br><span class="line"><span class="comment">-- Create a new user name is 'DBadmin', and password is 'DBadmin'</span></span><br><span class="line"><span class="keyword">create</span> <span class="keyword">user</span> DBadmin <span class="keyword">identified</span> <span class="keyword">by</span> DBadmin;</span><br><span class="line"><span class="comment">-- Grant privilege to DBadmin</span></span><br><span class="line"><span class="keyword">GRANT</span> <span class="keyword">CONNECT</span>, <span class="keyword">RESOURCE</span>, DBA <span class="keyword">TO</span> DBadmin;</span><br><span class="line"><span class="comment">--Create a sample table.</span></span><br><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> <span class="keyword">Sample</span> (<span class="keyword">id</span> <span class="built_in">int</span>,<span class="keyword">name</span> varchar2(<span class="number">20</span>));</span><br></pre></td></tr></table></figure>
-<p>Now the account and table are created, you can use <code>SELECT USERNAME FROM DBA_USERS;</code> to check.</p>
-<h3 id="3-Connect-database-with-SQLDeveloper"><a href="#3-Connect-database-with-SQLDeveloper" class="headerlink" title="3. Connect database with SQLDeveloper"></a>3. Connect database with SQLDeveloper</h3><p>SQLDeveloper is an integrated development environment for working with SQL in Oracle databases with GUI; you can download it from <a href="https://www.oracle.com/technetwork/developer-tools/sql-developer/downloads/index.html" target="_blank" rel="noopener">here</a>.</p>
-<p>After installed SQLDeveloper, click the green plus symbol in the left-top hand side to create a new connection. Use the information below to connect:</p>
-<table>
-<thead>
-<tr>
-<th>Connection name</th>
-<th>Username</th>
-<th>Password</th>
-<th>Hostname</th>
-<th>Port</th>
-<th>Service name</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>OracleDB</td>
-<td>DBadmin</td>
-<td>DBadmin</td>
-<td>localhost</td>
-<td>1521</td>
-<td>ORCLCDB.localdomain</td>
-</tr>
-</tbody>
-</table>
-<p>If the service name is wrong, try to execute <code>select value from v$parameter where name=&#39;service_names&#39;;</code> in the terminal to get the correct service name.</p>
-
+        
       
     </div>
 
@@ -501,15 +443,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2019/03/12/Docker/" rel="next" title="Oracle 12c enterprise edition Installation on Mac Mojave with Docker">
+                <i class="fa fa-chevron-left"></i> Oracle 12c enterprise edition Installation on Mac Mojave with Docker
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/09/29/Build-a-2D-game-with-photo-gesture-recognition-by-Tensor-Flow-JS-and-Pixi-JS/" rel="prev" title="Use TensorFlow.js and Pixi.js to build a 2D game with guesture/photo recognition control">
-                Use TensorFlow.js and Pixi.js to build a 2D game with guesture/photo recognition control <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -553,17 +495,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Table of Contents
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            Overview
-          </li>
-        </ul>
-      
 
-      <div class="site-overview-wrap sidebar-panel">
+      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -635,23 +568,6 @@
         </div>
       </div>
 
-      
-      <!--noindex-->
-        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-            
-            
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Install-docker"><span class="nav-number">1.</span> <span class="nav-text">1. Install docker</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Install-Oracle-database-in-docker"><span class="nav-number">2.</span> <span class="nav-text">2. Install Oracle database in docker</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-Connect-database-with-SQLDeveloper"><span class="nav-number">3.</span> <span class="nav-text">3. Connect database with SQLDeveloper</span></a></li></ol></div>
-            
-
-          </div>
-        </div>
-      <!--/noindex-->
       
 
       
