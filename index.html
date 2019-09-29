@@ -331,6 +331,190 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="/2019/09/29/Selenium-and-Jenkins/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Seamas Zhou">
+      <meta itemprop="description" content="https://seamaszhou.com/">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Seamas Zhou">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/09/29/Selenium-and-Jenkins/" class="post-title-link" itemprop="url">Build an automation test system with Jenkins and Selenium 2</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-09-29 21:36:09 / Modified: 21:39:37" itemprop="dateCreated datePublished" datetime="2019-09-29T21:36:09+10:00">2019-09-29</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>​      </p>
+<p>Selenium is a popular framework for testing web applications. The 2.0 of Selenium included WebDriver API, which is a simpler compact object-oriented API to use on Web UI testing. This blog is going to introduce how to build a basic web automation testing program using Python 3 &amp; Selenium and deployed it on <a href="https://jenkins.io/" target="_blank" rel="noopener">Jenkins</a>.</p>
+<p></p><h3 *id*="Install-selenium-and-driver"><a *href*="#Install-selenium-and-driver" *class*="headerlink" *title*="Install selenium and driver"></a>Install selenium and driver</h3><p>Executing the command below to install selenium in your local environment </p><p></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install -U selenium</span><br></pre></td></tr></table></figure>
+
+<p>Next, you can download the Chrome driver in <a href="https://pypi.org/project/selenium/" target="_blank" rel="noopener">here</a>, you can also find other drivers for Edge/Firefox/Safari in this page. After downloading the driver, place it in your in /usr/bin or /usr/local/bin.</p>
+
+<p></p><h3 *id*="Write-a-test-case"><a *href*="#Write-a-test-case" *class*="headerlink" *title*="Write a test case"></a>Write a test case</h3><p>This tutorial is going to testing Google’s search bar as an example.</p><p></p>
+<p>First, we create a Python file calls ‘base.py’. It will initiate the Chrome driver and using Python’s standard unit test library.</p>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> unittest</span><br><span class="line"><span class="keyword">from</span> selenium <span class="keyword">import</span> webdriver</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TestCase</span><span class="params">(unittest.TestCase)</span>:</span></span><br><span class="line"></span><br><span class="line">      <span class="comment">#Setup broswer and open <a href="https://www.google.com/" target="_blank" rel="noopener">https://www.google.com/</a></span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">setUp</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">global</span> driver</span><br><span class="line">        driver = webdriver.Chrome()</span><br><span class="line">        self.driver = driver</span><br><span class="line">        self.driver.get(<span class="string">“<a href="https://www.google.com/&quot;" target="_blank" rel="noopener">https://www.google.com/&quot;</a></span>)</span><br><span class="line">    </span><br><span class="line">    <span class="comment">#After ran all test cases, the browser will close</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">tearDown</span><span class="params">(self)</span>:</span></span><br><span class="line">          self.driver.close()</span><br></pre></td></tr></table></figure>
+
+<p>Now we need to create another Python file calls ‘Google_test.py’, it going to all the test cases.</p>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> unittest</span><br><span class="line"><span class="keyword">import</span> base</span><br><span class="line"><span class="keyword">from</span> selenium.webdriver.common.keys <span class="keyword">import</span> Keys</span><br><span class="line"><span class="keyword">from</span> selenium.common.exceptions <span class="keyword">import</span> NoSuchElementException</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">GoogleTest</span><span class="params">(base.TestCase)</span>:</span></span><br><span class="line">  </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">test_google_search</span><span class="params">(self)</span>:</span></span><br><span class="line">        driver = base.driver</span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            elem = driver.find_element_by_name(<span class="string">‘q’</span>)</span><br><span class="line">            elem.send_keys(<span class="string">‘python’</span> + Keys.ENTER)</span><br><span class="line">        <span class="keyword">except</span> NoSuchElementException:</span><br><span class="line">            <span class="keyword">print</span> (<span class="string">‘Something is wrong’</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> <strong>name</strong> == <span class="string">“<strong>main</strong>“</span>:</span><br><span class="line">    unittest.main()</span><br></pre></td></tr></table></figure>
+
+<p>Execute <code>python3 Google_test.py</code> in your terminal to run the test code; you should see the output like below:</p>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">———————————————————————-</span><br><span class="line">Ran 1 <span class="built_in">test</span> <span class="keyword">in</span> 5.731s</span><br><span class="line"></span><br><span class="line">OK</span><br></pre></td></tr></table></figure>
+
+<p></p><h3 *id*="Install-Jenkins-and-plugins"><a *href*="#Install-Jenkins-and-plugins" *class*="headerlink" *title*="Install Jenkins and plugins"></a>Install Jenkins and plugins</h3><p>Jenkins is an open source automation server, and we will going to install and host it in our local server. You can download Jenkins for Mac in <a *href*="https://jenkins.io/download/" *target*="_blank" *rel*="noopener">here</a>, after installing Jenkins, <code>cd</code> to the Jenkins folder by your terminal and execute the code below.</p><p></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -jar jenkins.war –httpPort=<span class="number">8080</span></span><br></pre></td></tr></table></figure>
+
+<p>Now the Jenkins is hosting in your local server, browse it in <a href="http://localhost:8080" target="_blank" rel="noopener">http://localhost:8080</a>.</p>
+
+<p>After you logged in to Jenkins, you need to download a few plugins to support selenium web test. Click manage Jenkins in the left-side bar and click manage plugin, and download <strong>chrome driver</strong> + <strong>selenium plugin</strong> + <strong>spinning panda plugin</strong> into your Jenkins.</p>
+
+<p></p><h3 *id*="Schedule-script-and-run"><a *href*="#Schedule-script-and-run" *class*="headerlink" *title*="Schedule script and run"></a>Schedule script and run</h3><p>Now click New item to create a new <strong><em>Freestyle Project</em></strong></p><p></p>
+<p>After the project created, you are going to the configuration page. </p>
+
+<p>Go to the build section and add a Python builder, choose the Nature as Shell and input the command like below:</p>
+
+<p><code>Python3 python3 root path/Google_test.py</code></p>
+
+<p>The selenium test is set up with Jenkins; now you can go to your project page and click <strong>Build now</strong> to run your test code.</p>
+
+<p>If you want to schedule your code automatically running every day, go to the configuration page and choose ‘Build periodically’. Then input the time you want it run, for example, <code>00 7 <em> </em> *</code> means to run the test every day 7 am.</p>
+
+
+
+<p>​      </p>
+<p>​    </p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="/2019/09/29/Build-a-2D-game-with-photo-gesture-recognition-by-Tensor-Flow-JS-and-Pixi-JS/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -707,7 +891,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">2</span>
+                    <span class="site-state-item-count">3</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
